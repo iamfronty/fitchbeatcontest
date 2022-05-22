@@ -13,11 +13,12 @@ $(window).ready(function () {
     //     waveColor: "#DF547D"
     // });
     // wavesurfer.load('assets/audio/sovvy.mp3');
-    $('.loader').delay(250).fadeOut(400);
-    const swiper = new Swiper('.swiper', {
+    $('.loader').delay(500).fadeOut(400);
+    new Swiper('.swiper', {
         speed: 600,
         slidesPerView: 1,
-        effect: 'cards'
+        effect: 'cards',
+        allowTouchMove: false,
     });
 })
 
@@ -31,7 +32,7 @@ $('.play').click(function () {
     wavesurfer.on('audioprocess', function () {
         let currTime = fmtMSS(wavesurfer.getCurrentTime());
         let trackLength = fmtMSS(wavesurfer.getDuration());
-        let currCard = $('.card[data-number="'+ number + '"]');
+        let currCard = $('.card[data-number="' + number + '"]');
         currCard.children('.time').children('.current-time').html(currTime.split('.')[0]);
         currCard.children('.time').children('.track-length').html(trackLength.split('.')[0]);
         if (currTime.split('.')[0] == trackLength.split('.')[0]) {
@@ -45,4 +46,27 @@ $('.pause').click(function () {
     $(this).prev().show();
     let number = $(this).parent().attr("data-number");
     WaveSurferInit.instances[number].pause();
-})
+});
+
+$('.like').click(function () {
+    let number = $(this).parent().prev('.card').attr("data-number");
+    WaveSurferInit.instances[number].pause();
+    $(this).parent().children('svg').removeClass('active');
+    $(this).addClass('active');
+    let swiper = document.querySelector('.swiper').swiper;
+    swiper.slideNext();
+});
+$('.skip').click(function () {
+    let number = $(this).parent().prev('.card').attr("data-number");
+    WaveSurferInit.instances[number].pause();
+    $(this).parent().children('svg').removeClass('active');
+    $(this).addClass('active');
+    let swiper = document.querySelector('.swiper').swiper;
+    swiper.slideNext();
+});
+$('.back').click(function () {
+    let number = $(this).parent().prev('.card').attr("data-number");
+    WaveSurferInit.instances[number].pause();
+    let swiper = document.querySelector('.swiper').swiper;
+    swiper.slidePrev();
+});
