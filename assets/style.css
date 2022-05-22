@@ -20,7 +20,7 @@ img {
     justify-content: center;
     flex-direction: column;
     gap: 6em;
-    background: #F5F5F5;
+    background: #fff;
     z-index: 10;
     padding: 6em;
     box-sizing: border-box;
