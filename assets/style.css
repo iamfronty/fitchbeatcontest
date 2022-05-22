@@ -193,12 +193,38 @@ form {
         font-size: 6px;
     }
 
+    .main {
+        padding: 4em;
+    }
+
     .main .swiper {
         width: 100%;
         overflow: hidden;
     }
 
+    .card {
+        padding: 4em;
+        margin-bottom: 6em;
+    }
+
+    .card .number {
+        margin-bottom: .5rem;
+    }
+
+    .card .name {
+        margin-bottom: 1.5rem;
+    }
+
+    .card .time {
+        margin-bottom: 1.5rem;
+    }
+
     .footer {
         font-size: 2em;
     }
+
+    .footer .links a img {
+        height: 1em;
+        width: auto;
+    }    
 }
