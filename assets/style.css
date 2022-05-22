@@ -51,7 +51,7 @@ img {
     flex-direction: column;
     width: 100%;
     height: 100vh;
-    padding: 3em;
+    padding: 6em;
     box-sizing: border-box;
 }
 
@@ -87,10 +87,13 @@ img {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 2em;
     margin-top: 1rem;
     margin-bottom: 3rem;
+    gap: 1em;
+    opacity: 0;
+    transition: opacity .3s;
 }
 
 .card .control {

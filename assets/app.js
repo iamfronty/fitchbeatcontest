@@ -1,3 +1,7 @@
+function fmtMSS(s) {
+    return (s - (s %= 60)) / 60 + (9 < s ? ':' : ':0') + s
+}
+
 $(window).ready(function () {
     // var wavesurfer = WaveSurfer.create({
     //     container: '#waveform',
@@ -11,22 +15,32 @@ $(window).ready(function () {
     // wavesurfer.load('assets/audio/sovvy.mp3');
     $('.loader').delay(250).fadeOut(400);
     const swiper = new Swiper('.swiper', {
-        speed: 400,
+        speed: 600,
         slidesPerView: 1,
-        effect: 'cards',
-        cardsEffect: {
-            // slideShadows: false
-        },
+        effect: 'cards'
     });
 })
 
-$('.play').click(function(){
+$('.play').click(function () {
     $(this).hide();
     $(this).next().show();
+    $(this).prev('.time').css('opacity', '1')
     let number = $(this).parent().attr("data-number");
-    WaveSurferInit.instances[number].play();
+    let wavesurfer = WaveSurferInit.instances[number];
+    wavesurfer.play();
+    wavesurfer.on('audioprocess', function () {
+        let currTime = fmtMSS(wavesurfer.getCurrentTime());
+        let trackLength = fmtMSS(wavesurfer.getDuration());
+        let currCard = $('.card[data-number="'+ number + '"]');
+        currCard.children('.time').children('.current-time').html(currTime.split('.')[0]);
+        currCard.children('.time').children('.track-length').html(trackLength.split('.')[0]);
+        if (currTime.split('.')[0] == trackLength.split('.')[0]) {
+            currCard.children('.pause').hide();
+            currCard.children('.play').show();
+        }
+    });
 });
-$('.pause').click(function(){
+$('.pause').click(function () {
     $(this).hide();
     $(this).prev().show();
     let number = $(this).parent().attr("data-number");
