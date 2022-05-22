@@ -2,7 +2,7 @@ body {
     font-family: 'JetBrains Mono', monospace;
     background: #F5F5F5;
     user-select: none;
-    font-size: 16px;
+    font-size: 8px;
 }
 
 img {
@@ -19,11 +19,15 @@ img {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 48px;
+    gap: 6em;
     background: #F5F5F5;
     z-index: 10;
-    padding: 48px;
+    padding: 6em;
     box-sizing: border-box;
+}
+
+.loader span {
+    font-size: 2em;
 }
 
 @keyframes spin {
@@ -47,35 +51,36 @@ img {
     flex-direction: column;
     width: 100%;
     height: 100vh;
-    padding: 48px;
+    padding: 3em;
     box-sizing: border-box;
 }
+
 .main .swiper {
-    width: 640px;
-    height: 650px;
+    width: 80em;
 }
 
 .card {
-    padding: 48px;
+    padding: 6em;
     box-sizing: border-box;
-    border-radius: 48px;
+    border-radius: 6em;
     background: #fff;
     /* width: 640px; */
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 6em;
 }
 
 .card .number {
     opacity: .5;
     display: block;
-    margin-bottom: 16px;
+    font-size: 2em;
+    margin-bottom: 1rem;
 }
 
 .card .name {
     display: block;
     font-weight: 500;
-    font-size: 36px;
-    margin-bottom: 48px;
+    font-size: 4.5em;
+    margin-bottom: 3rem;
 }
 
 .card .time {
@@ -83,18 +88,24 @@ img {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    margin-top: 16px;
-    margin-bottom: 48px;
+    font-size: 2em;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
 }
 
 .card .control {
-    width: 64px;
-    height: 64px;
+    font-size: inherit;
+    width: 8em;
+    height: 8em;
     border-radius: 100px;
     background: #F5F5F5;
     border: none;
     cursor: pointer;
     transition: background .2s, transform .15s;
+}
+
+.card .control.pause {
+    display: none;
 }
 
 .card .control:hover {
@@ -109,7 +120,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 48px;
+    gap: 6em;
 }
 
 .actions svg {
@@ -123,4 +134,21 @@ img {
 
 .actions .skip.active {
     fill: #DF547D;
+}
+
+.swiper-3d .swiper-slide-shadow {
+    background: #F5F5F5;
+}
+
+.footer {
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.footer a {
+    color: inherit;
 }

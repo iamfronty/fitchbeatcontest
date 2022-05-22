@@ -9,9 +9,26 @@ $(window).ready(function () {
     //     waveColor: "#DF547D"
     // });
     // wavesurfer.load('assets/audio/sovvy.mp3');
-    $('.loader').fadeOut(400);
+    $('.loader').delay(250).fadeOut(400);
     const swiper = new Swiper('.swiper', {
         speed: 400,
-        slidesPerView: 1
+        slidesPerView: 1,
+        effect: 'cards',
+        cardsEffect: {
+            // slideShadows: false
+        },
     });
+})
+
+$('.play').click(function(){
+    $(this).hide();
+    $(this).next().show();
+    let number = $(this).parent().attr("data-number");
+    WaveSurferInit.instances[number].play();
+});
+$('.pause').click(function(){
+    $(this).hide();
+    $(this).prev().show();
+    let number = $(this).parent().attr("data-number");
+    WaveSurferInit.instances[number].pause();
 })
