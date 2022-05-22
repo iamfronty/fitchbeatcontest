@@ -107,6 +107,11 @@ img {
     transition: background .2s, transform .15s;
 }
 
+.card .control img {
+    height: 3em;
+    width: auto;
+}
+
 .card .control.pause {
     display: none;
 }
@@ -129,6 +134,8 @@ img {
 .actions svg {
     cursor: pointer;
     transition: fill .2s;
+    height: 4em;
+    width: auto;
 }
 
 .actions svg.active {
@@ -175,4 +182,23 @@ img {
 
 .footer a {
     color: inherit;
+}
+
+form {
+    display: none;
+}
+
+@media screen and (max-width: 920px) {
+    body {
+        font-size: 6px;
+    }
+
+    .main .swiper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .footer {
+        font-size: 2em;
+    }
 }
