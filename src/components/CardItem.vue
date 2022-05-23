@@ -131,33 +131,26 @@ export default {
         cursorWidth: 0,
         normalize: true,
       });
-      this.waveSurfer.load(this.audioUrl);
 
-      if (this.trackPosition === 1) {
-        this.waveSurfer.on("ready", () => {
-          this.wavesReady();
-        });
-      }
+      fetch(`./waveforms/${this.trackName}.json`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+          })
+          .then(peaks => {
+            console.log('loaded peaks! sample_rate: ' + peaks.sample_rate);
+            this.waveSurfer.load(this.audioUrl, peaks.data);
+            this.wavesReady();
+          })
+          .catch((e) => {
+            console.error('error', e);
+          });
     },
   },
   mounted() {
-    if (this.currentCard < this.trackPosition - 4) {
-      return;
-    }
-
     this.createWaveSurfer();
-  },
-  watch: {
-    currentCard: function (newVal, oldVal) {
-      if (
-        this.trackPosition > newVal + 2 &&
-        newVal > this.trackPosition - 4 &&
-        newVal > oldVal &&
-        this.waveSurfer === null
-      ) {
-        this.createWaveSurfer();
-      }
-    },
   },
 };
 </script>

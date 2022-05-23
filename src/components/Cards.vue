@@ -4,7 +4,6 @@
     :slides-per-view="1"
     :effect="'cards'"
     :allow-touch-move="false"
-    :modules="modules"
     @swiper="onSwiper"
   >
     <swiper-slide v-for="(artist, index) in artists" :key="artist.name">
@@ -18,7 +17,6 @@
           :current-card="currentCard"
           :waves-ready="wavesReady"
           :update-artist-status="updateArtistStatus"
-          v-if="currentCard >= index - 2 && currentCard < index + 2"
       />
     </swiper-slide>
     <swiper-slide>
@@ -95,13 +93,11 @@ import {Swiper, SwiperSlide} from "swiper/vue";
 import CardItem from "./CardItem.vue";
 
 import "swiper/css";
-import "swiper/css/effect-cards";
-
-import {EffectCards} from "swiper";
 
 export default {
   props: {
     wavesReady: Function,
+    updateWavesCount: Function,
   },
   data() {
     return {
@@ -181,11 +177,7 @@ export default {
       });
     });
     this.artists = [...artists];
-  },
-  setup() {
-    return {
-      modules: [EffectCards],
-    };
+    this.updateWavesCount(this.artists.length);
   },
 };
 </script>
