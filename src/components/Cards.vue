@@ -1,11 +1,11 @@
 <template>
   <swiper
-    :speed="600"
-    :slides-per-view="1"
-    :effect="'cards'"
-    :allow-touch-move="false"
-    v-bind:modules="isFirefox === -1 ? modules : []"
-    @swiper="onSwiper"
+      :speed="600"
+      :slides-per-view="1"
+      :effect="'cards'"
+      :allow-touch-move="false"
+      v-bind:modules="isFirefox === -1 ? modules : []"
+      @swiper="onSwiper"
   >
     <swiper-slide v-for="(artist, index) in artists" :key="artist.name">
       <CardItem
@@ -18,6 +18,7 @@
           :current-card="currentCard"
           :waves-ready="wavesReady"
           :update-artist-status="updateArtistStatus"
+          v-if="currentCard >= index - 2 && currentCard < index + 2"
       />
     </swiper-slide>
     <swiper-slide>
@@ -140,20 +141,16 @@ export default {
       this.artists = [...newArtists];
     },
     sendForm() {
+      let form = this.$refs.form;
+
       this.artists.map((artist) => {
         if (artist.status === 'like') {
+          form.querySelector(`input[name="${artist.elName}"]`).checked = true;
           this.form.append(artist.elName, artist.name);
         }
       });
 
-      fetch(`https://thingproxy.freeboard.io/fetch/${this.formAction}`, {
-        method: 'POST',
-        body: this.form,
-      }).then((response) => {
-        console.log(response);
-      }).catch((err) => {
-        console.error(err);
-      });
+      form.submit();
     },
   },
   mounted() {
@@ -182,7 +179,7 @@ export default {
       });
     });
     this.artists = [...artists];
-    this.updateWavesCount(this.artists.length);
+    this.updateWavesCount(3);
   },
   setup() {
     return {
