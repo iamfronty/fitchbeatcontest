@@ -3,6 +3,9 @@
     <img src="@/assets/img/logo.svg" alt="shiza kanye" class="logo" />
     <span>beat contest vol. 1</span>
     <img src="@/assets/img/spin.svg" alt="spinner" class="spin" />
+    <span class="loaded">
+      <span v-if="loaded > 3">loaded {{ loaded }} tracks</span>
+    </span>
   </div>
 </template>
 
@@ -28,6 +31,15 @@
   font-size: 2em;
 }
 
+.loader .loaded {
+  opacity: 0.5;
+  height: 10px;
+}
+
+.loader .loaded > span {
+  font-size: 0.8em;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -42,3 +54,11 @@
   animation: spin 1.5s ease-in-out infinite;
 }
 </style>
+
+<script>
+export default {
+  props: {
+    loaded: Number,
+  }
+}
+</script>

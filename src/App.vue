@@ -7,7 +7,8 @@ export default {
     return {
       loader: true,
       mainOpacity: 0,
-      isWavesReady: false,
+      wavesReadyCount: 0,
+      wavesCount: -1,
     };
   },
   components: {
@@ -16,12 +17,15 @@ export default {
   },
   methods: {
     wavesReady() {
-      this.isWavesReady = true;
+      this.wavesReadyCount++;
     },
+    updateWavesCount(count) {
+      this.wavesCount = count;
+    }
   },
   created() {
     const interval = setInterval(() => {
-      if (this.isWavesReady) {
+      if (this.wavesReadyCount === this.wavesCount) {
         clearInterval(interval);
         this.loader = false;
         this.mainOpacity = 1;
@@ -33,10 +37,10 @@ export default {
 
 <template>
   <Transition>
-    <PreloaderItem v-if="loader" />
+    <PreloaderItem v-if="loader" :loaded="wavesReadyCount" />
   </Transition>
   <div class="main" v-bind:style="{ opacity: mainOpacity }">
-    <Cards :waves-ready="wavesReady" />
+    <Cards :waves-ready="wavesReady" :update-waves-count="updateWavesCount" />
     <div class="footer">
       <div class="links">
         <a
