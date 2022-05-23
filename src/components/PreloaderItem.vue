@@ -50,7 +50,7 @@
   }
 }
 
-.loader .spin {
+.loader .spin, .control .spin {
   animation: spin 1.5s ease-in-out infinite;
 }
 </style>
