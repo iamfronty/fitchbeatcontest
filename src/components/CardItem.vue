@@ -11,8 +11,11 @@
     <button class="control play" @click="play" v-if="showPlayButton">
       <img src="@/assets/img/play.svg" alt="play" />
     </button>
-    <button class="control pause" @click="pause" v-else>
+    <button class="control pause" @click="pause" v-else-if="trackLength !== '0:00'">
       <img src="@/assets/img/pause.svg" alt="pause" />
+    </button>
+    <button class="control" v-else>
+      <img src="@/assets/img/spin.svg" alt="spinner" class="spin" />
     </button>
   </div>
   <div class="actions">
@@ -90,9 +93,9 @@ export default {
   methods: {
     play() {
       this.showPlayButton = false;
-      this.timeOpacity = 1;
       this.waveSurfer.play();
       this.waveSurfer.on("audioprocess", () => {
+        this.timeOpacity = 1;
         this.currentTime = fmtMSS(this.waveSurfer.getCurrentTime());
         this.trackLength = fmtMSS(this.waveSurfer.getDuration());
 
@@ -130,6 +133,7 @@ export default {
         progressColor: "#df547d",
         cursorWidth: 0,
         normalize: true,
+        backend: 'MediaElement',
       });
 
       fetch(`./waveforms/${this.trackName}.json`)

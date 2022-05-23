@@ -4,6 +4,7 @@
     :slides-per-view="1"
     :effect="'cards'"
     :allow-touch-move="false"
+    v-bind:modules="isFirefox === -1 ? modules : []"
     @swiper="onSwiper"
   >
     <swiper-slide v-for="(artist, index) in artists" :key="artist.name">
@@ -93,6 +94,9 @@ import {Swiper, SwiperSlide} from "swiper/vue";
 import CardItem from "./CardItem.vue";
 
 import "swiper/css";
+import "swiper/css/effect-cards";
+
+import {EffectCards} from "swiper";
 
 export default {
   props: {
@@ -106,6 +110,7 @@ export default {
       formAction: "",
       form: null,
       currentCard: 0,
+      isFirefox: navigator.userAgent.indexOf('Firefox'),
     };
   },
   components: {
@@ -178,6 +183,11 @@ export default {
     });
     this.artists = [...artists];
     this.updateWavesCount(this.artists.length);
+  },
+  setup() {
+    return {
+      modules: [EffectCards],
+    };
   },
 };
 </script>
