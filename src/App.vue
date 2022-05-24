@@ -44,12 +44,12 @@ export default {
     <div class="footer">
       <div class="links">
         <a
-          href="https://soundcloud.com/mr-nobody-852994512/sets/shiza-kanye-beat-contest-vol1/s-qO1HZwrAhwf"
+          href="https://soundcloud.com/mr-nobody-646627175/sets/shiza-kanye-beat-contest-vol1/s-UuAGeZ3Ki7T"
           target="_blank"
         >
           <img src="@/assets/img/sc.svg" alt="soundcloud" />
         </a>
-        <a href="#" target="_blank">
+        <a href="https://vk.com/audios-97683183?z=audio_playlist-97683183_85348788" target="_blank">
           <img src="@/assets/img/vk.svg" alt="soundcloud" />
         </a>
       </div>

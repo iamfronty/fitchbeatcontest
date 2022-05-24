@@ -22,19 +22,6 @@
       />
     </swiper-slide>
     <swiper-slide>
-      <span class="end">
-        биточки кончились,
-        <br/>
-        спасибо за голоса!
-        <br/><br/>
-        ссылки на плейлисты
-        <br/>
-        можешь найти внизу
-        <br/><br/>
-        с любовью,
-        <br/>
-        фитч и музыканты
-      </span>
     </swiper-slide>
   </swiper>
   <form
